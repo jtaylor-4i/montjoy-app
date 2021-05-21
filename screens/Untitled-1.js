@@ -1,83 +1,76 @@
+import React,{ Component } from 'react';
+import {
+    Alert,
+    StyleSheet,
+    View,
+    } from 'react-native';
+import { withTheme, Button, Text, TextInput } from 'react-native-paper';
+import { useSelector, useDispatch } from 'react-redux'
 
-import React, { Component } from 'react';
-import { Text, View, Dimensions, StyleSheet } from 'react-native';
+import { UPDATE_USER_FIELD } from '../store/constants/user'
 
-import Carousel from 'react-native-snap-carousel'; // Version can be specified in package.json
+const SignupForm = ( {navigation})=> {
+    const state = useSelector(state => state.user);
+    
+    const dispatch = useDispatch()
+    const handleButtonPress = () => {
+        const { name, phone, email } = state;
+        Alert.alert( `User's data`,`Name: ${ name }, Phone: ${ phone }, Email: ${ email }` );
+    }
 
-import { scrollInterpolator, animatedStyles } from './utils/animations';
+    const renderTextfield = ( options )  => {
+        const state = useSelector(state => state.user);
+        return (
+            <TextInput                
+                mode='flat'
+                onChangeText=                
+                { e => 
+                    dispatch({
+                        type: UPDATE_USER_FIELD,
+                        payload: [options.name, e]
+                    })
+                }
+                label={ options.placeholder }                
+                value={ state[options.name]}
+                keyboardType={ options.keyboard||'default' }
+            />
+        );
+    }
 
-const SLIDER_WIDTH = Dimensions.get('window').width;
-const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
-const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 3 / 4);
+    const renderButton = ()  => {
+        return (
+            <Button
+                mode='contained'
+                onPress={ handleButtonPress }>
+                View
+            </Button>
+        );
+    }
 
-const DATA = [];
-for (let i = 0; i < 10; i++) {
-  DATA.push(i)
-}
-
-export default class App extends Component {
-  
-  state = {
-    index: 0
-  }
-
-  constructor(props) {
-    super(props);
-    this._renderItem = this._renderItem.bind(this)
-  }
-
-  _renderItem({ item }) {
     return (
-      <View style={styles.itemContainer}>
-        <Text style={styles.itemLabel}>{`Item ${item}`}</Text>
-      </View>
+        <View >
+            <Text>
+                Please enter your contact information { renderButton() }                    
+            </Text>
+            
+            { renderTextfield( { 
+                name: 'name',
+                placeholder: 'Your name' } ) }
+            { renderTextfield( { 
+                name: 'phone',
+                placeholder: 'Your phone number',
+                keyboard: 'phone-pad' } ) }
+            { renderTextfield( { 
+                name: 'email',
+                placeholder: 'Your email address',
+                keyboard: 'email-address' } ) }                
+            <Button
+                mode='contained'                                        
+                onPress={ () => navigation.navigate( "HomeScreen" ) }>
+                Continue
+            </Button>                
+        </View>
     );
-  }
-  
-  render() {
-    return (
-      <View>
-        <Carousel
-          ref={(c) => this.carousel = c}
-          data={DATA}
-          renderItem={this._renderItem}
-          sliderWidth={SLIDER_WIDTH}
-          itemWidth={ITEM_WIDTH}
-          containerCustomStyle={styles.carouselContainer}
-          inactiveSlideShift={0}
-          onSnapToItem={(index) => this.setState({ index })}
-          scrollInterpolator={scrollInterpolator}
-          slideInterpolatedStyle={animatedStyles}
-          useScrollView={true}          
-        />
-        <Text style={styles.counter}
-        >
-          {this.state.index}
-        </Text>
-      </View>
-    );
-  }
-}
+}  
 
-const styles = StyleSheet.create({
-  carouselContainer: {
-    marginTop: 50
-  },
-  itemContainer: {
-    width: ITEM_WIDTH,
-    height: ITEM_HEIGHT,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'dodgerblue'
-  },
-  itemLabel: {
-    color: 'white',
-    fontSize: 24
-  },
-  counter: {
-    marginTop: 25,
-    fontSize: 30,
-    fontWeight: 'bold',
-    textAlign: 'center'
-  }
-});
+export default withTheme(SignupForm);

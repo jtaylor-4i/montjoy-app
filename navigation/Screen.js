@@ -1,74 +1,72 @@
-import React from 'react';
-import { View } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createStackNavigator } from '@react-navigation/stack';
-import { Ionicons } from '@expo/vector-icons';
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createStackNavigator } from "@react-navigation/stack";
+
+import { Ionicons } from "@expo/vector-icons";
+
+import InfoScreen from "../screens/Info";
+import LoginScreen from "../screens/Login";
+import ProfileScreen from "../screens/Profile";
+import SettingsScreen from "../screens/Settings";
+import SignupScreen from "../screens/SignupForm";
+import ViewerScreen from "../screens/Viewer";
+import WelcomeScreen from "../screens/Welcome";
+import DreamerInformationScreen from "../screens/DreamerInformation";
+import StreamerInformationScreen from "../screens/StreamerInformation";
+import LandingScreen from "../screens/Landing";
+
+const Tab = createBottomTabNavigator();
+const AppStack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+
+const StreamerStack = createStackNavigator();
+const DreamerStack = createStackNavigator();
 
 
-//screens
+// const DreamerStackScreen = () => {
+//     <DreamerStack.Navigator>
+//         <DreamerStack.Screen name="Streamer" component={StreamerInformationScreen} />
+//         <DreamerStack.Screen name="Dreamer" component={DreamerInformationScreen} />
+//     </DreamerStack.Navigator>
+// }
 
-import WelcomeScreen from '../screens/Welcome';
-import HomeScreen from '../screens/Home';
-import MapScreen from '../screens/Map';
-//import ProfileScreen from '../screens/Profile';
-import SettingsScreen from '../screens/Settings';
-import SignupScreen from '../screens/SignupForm';
-import { withTheme } from 'react-native-paper';
-import CameraScreen from '../components/Camera';
+// const StreamerStackScreen = () => {
+//     <StreamerStack.Navigator>
+//         <StreamerStack.Screen name="Streamer" component={StreamerInformationScreen} />
+//         <StreamerStack.Screen name="Dreamer" component={DreamerInformationScreen} />
+//     </StreamerStack.Navigator>
+// }
+
+// const TabNavigator = () => {
+//   return (
+//     <TabNavigator.Navigator>
+//       <TabNavigator.Screen name="Streamer" component={StreamerStackScreen} />
+//       <TabNavigator.Screen name="Dreamer" component={DreamerStackScreen} />
+//     </TabNavigator.Navigator>
+//   );
+// };
 
 
-const Tab=createBottomTabNavigator();
-const Drawer=createDrawerNavigator();
-const Stack=createStackNavigator();
+const AppNavigator = () => {
+  return (
+    <AppStack.Navigator>
+      <AppStack.Screen name="Welcome" component={WelcomeScreen} />
+      <AppStack.Screen name="Info" component={InfoScreen} />
+      <AppStack.Screen name="Signup" component={SignupScreen} />
+      <AppStack.Screen name="Landing" component={LandingScreen} />
+      <AppStack.Screen name="Dreamer" component={DreamerInformationScreen} />
+      <AppStack.Screen name="Streamer" component={StreamerInformationScreen} />
+    </AppStack.Navigator>
+  );
+};
 
+const AppDrawer = () => {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="Profile" component={ProfileScreen} />
+    </Drawer.Navigator>
+  );
+};
 
-const WelcomeStack=createStackNavigator();
-const SignupStack=createStackNavigator();
-
-const WelcomeNav=() => {
-	
-	return (
-		<WelcomeStack.Navigator 
-			initialRouteName="Welcome"
-			screenOptions={{				
-				headerTruncatedBackTitle: true,
-				headerBackTitleVisible: false,
-				headerTitle: false,														
-			}}>			
-			<Stack.Screen 
-				name="Welcome" 
-				component={ WelcomeScreen } 
-				options={{
-					headerShown: false
-				}}
-			/>
-			<Stack.Screen name="SignupScreen" 
-				component={ SignupScreen } 
-				options={{
-					headerShown: true
-				}}
-			/>
-			<Stack.Screen name="HomeScreen" component={ HomeScreen } />
-			<Stack.Screen name="MapScreen" 
-				component={ MapScreen } 
-				options={{
-				}}
-				/>
-			<Stack.Screen name="CameraScreen" component={CameraScreen} />
-
-		</WelcomeStack.Navigator>
-	)
-}
-
-const HomeStack = () => {
-	return (
-		<Stack.Navigator>
-			<Stack.Screen name="HomeScreen" component={HomeScreen} />
-			<Stack.Screen name="CameraScreen" component={CameraScreen} />
-			<Stack.Screen name="MapScreen" component={MapScreen} />
-		</Stack.Navigator>
-	)
-}
-
-export default WelcomeNav;
+export default AppNavigator;

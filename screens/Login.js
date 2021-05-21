@@ -1,15 +1,23 @@
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import {View, Text, StyleSheet} from 'react-native';
 
-const Login = () => {
+
+export const Login = () => {
     return (
-        <View>
+        <View style={styles.screen}>
             <Text>
-                Login Form
+                Settings Page
             </Text>
         </View>
-    )
+    );
 }
 
+const styles = StyleSheet.create({
+    screen: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+});
 
-const styles = StyleSheet.create({})
 export default Login;

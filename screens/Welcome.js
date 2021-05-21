@@ -1,45 +1,68 @@
+import React from "react";
+import { View, Text, StyleSheet, Button, Image,  } from "react-native";
+import { Title } from 'react-native-paper';
 
-import React, { useContext } from 'react';
-import { StyleSheet, View, Image, Alert, ActionSheetIOS } from 'react-native';
-import { withTheme, Button, Switch, Text } from 'react-native-paper';
-import FadeInView from '../components/FadeInView';
-
-import { useSelector, useDispatch } from 'react-redux';
-import { TOGGLE_DARK_MODE } from '../store/constants/appSettings';
+import MainButton from '../components/MainButton';
+import FadeInView from "../components/FadeInView";
 
 const Welcome = ({ navigation }) => {
-	const appSettings = useSelector((state) => state.appSettings);
-	const dispatch = useDispatch();
-	return (
-		<View style={styles.container}>
-			<FadeInView>
-				<Image source={require('../assets/images/montjoy-vertical-200x178.png')} />
-				<Button mode="contained" onPress={() => navigation.navigate('SignupScreen')}>
-					Sign up!
-				</Button>
-				<View style={styles.row}>
-					<Text>Toggle Dark Mode</Text>
-					<Switch
-						value={!appSettings.isDarkMode}
-						onValueChange={(e) => dispatch({ type: TOGGLE_DARK_MODE })}
-					/>
-				</View>
-			</FadeInView>
+  return (
+    <View style={styles.screen}>
+      <View style={styles.headerContainer}>
+        <Title style={styles.headerText}>Welcome</Title>
+      </View>
+	  <View>
+			<Text style={{color: 'white'}}>to the</Text>
 		</View>
-	);
+      <View style={styles.imageContainer}>
+        <FadeInView>
+          <Image
+            source={require("../assets/images/montjoy-vertical-200x178.png")}
+			style={{marginBottom: 20}}
+          />
+        </FadeInView>
+      </View>
+      <View style={styles.buttonContainer}>
+        <MainButton onPress={() => navigation.navigate("Info")}>
+			Get Started
+		  </MainButton>
+      </View>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-		//backgroundColor: '#031116',
-	},
-	row: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-	},
+  screen: {
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: "#031116",
+  },
+  headerText: {
+    color: "white",
+    fontSize: 24,
+  },
+  headerContainer: {
+	width: '100%',
+	height: 90,
+	paddingTop: 36,
+	alignItems: 'center',
+  },
+  imageContainer: {
+    marginTop: 30,
+	paddingTop: 36,
+    alignItems: "center",
+    alignContent: "center",
+    justifyContent: "space-around",
+	marginBottom: 24,
+	height: '50%',
+	width: '100%'
+  },
+  buttonContainer: {
+	padding: 20,
+	justifyContent: 'space-around',
+	flexDirection: 'row',
+	width: '100%',
+  },
 });
-export default withTheme(Welcome);
+
+export default Welcome;

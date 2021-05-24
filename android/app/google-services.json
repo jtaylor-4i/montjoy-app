@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "587256310597",
+    "project_id": "montjoy-1efb9",
+    "storage_bucket": "montjoy-1efb9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587256310597:android:ccc13b7d19b4cbfa29ec2c",
+        "android_client_info": {
+          "package_name": "com.montjoyapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "587256310597-vei3no2c2q3b0mev2ei0qja8mp12gteu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkVQP5dV5AoOXdN_yBN2m_t0ktf7yy3K4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "587256310597-vei3no2c2q3b0mev2ei0qja8mp12gteu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "587256310597-759mqc8si9kpo3ve88u2cmi7lc9levd7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.name.montjoyapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

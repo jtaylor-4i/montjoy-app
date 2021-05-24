@@ -7,11 +7,8 @@ import {
   TextInput,
   StyleSheet,
 } from "react-native";
-import Screens from './navigation/Screen';
-import {NavigationContainer} from "@react-navigation/native";
-import WelcomeScreen from './screens/Welcome';
-import InfoScreen from './screens/Info';
-
+import Screens from "./navigation/Screen";
+import { NavigationContainer } from "@react-navigation/native";
 
 function App() {
   return (
@@ -22,9 +19,7 @@ function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-
-  },
+  container: {},
 });
 
 export default App;
